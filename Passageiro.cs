@@ -28,7 +28,7 @@ namespace Desafio
         }
         public void PagarCorrida(float vlr)
         {
-            Console.Write("Escolha a Forma de Pagamento! [1]PIX, [2]Dinheiro, [3]Cartão Débito,[4]Cartão Crédito!");
+            Console.Write("Escolha a Forma de Pagamento! [1]PIX, [2]Dinheiro, [3]Cartão Débito, [4]Cartão Crédito!");
             do
             {
                 try

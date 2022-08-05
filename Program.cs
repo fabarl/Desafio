@@ -7,6 +7,7 @@ namespace Desafio
         static void Main(string[] args)
         {
             string Opc = "Ocupado";
+            int vrf;
             string EndOrigem;
             string EndDestino;
             int star = 99;
@@ -14,26 +15,52 @@ namespace Desafio
             Veiculo Vei = new Veiculo();
             Passageiro Pass = new Passageiro();
             Corrida corrida = new Corrida();
-
+            // Cadastro dos dados no Aplicativo
             Pass.CadastroUsuario("Fabiano","6696291058", "Passageiro");
             Mot.CadastroUsuario("José", "669999999","Motorista");
             Vei.CadastroVeiculo("Lanborghini","BR999","Preto");
 
             Console.Clear();
-
+            //Inicio da Corrida
+            Console.WriteLine($" Bem Vindo {Pass.Nome}, Informe os dados para iniciarmos:"); 
             Console.Write("informe o Endereço de Origem: ");
             EndOrigem = Console.ReadLine();
             Console.Write("informe o Endereço de Destino: ");
             EndDestino = Console.ReadLine();
-            Pass.ChamarCorrida(EndOrigem,EndDestino);
 
-            while (Mot.AceitarCorrida(Opc) != true)
+            Console.Clear();
+            //Encontrar um Motorista
+            Pass.ChamarCorrida(EndOrigem,EndDestino);
+            //Motorista aceita ou não
+            
+            do
             {
-                    Opc = "Livre";
-            }
-            corrida.IniciarCorrida(EndOrigem,EndDestino,Pass.Nome,Mot.Nome,150);
+                Console.WriteLine($" Origem: {EndOrigem} - Destino: {EndDestino}");
+                Console.Write($"Motorista {Mot.Nome} Deseja aceitar a Corrida? ");
+                Console.Write($"[1] Aceitar - [2] Negar : ");
+                try
+                {
+                    vrf = int.Parse(Console.ReadLine());
+                    if (vrf is < 1 or > 2)
+                        Console.Write("Insira um opção Válida: ");
+                    else
+                    {
+                        if(vrf == 1)
+                            Opc = "Livre";
+                    }                        
+                }
+                catch (Exception)
+                {
+                    Console.Write("Opção inválida! Insira novamente: ");
+                }                
+            } while (Mot.AceitarCorrida(Opc) != true);
+            //Inicia a Corrida
+            corrida.IniciarCorrida(EndOrigem, EndDestino, Pass.Nome, Mot.Nome, 50);
+            //finaliza a Corrida
             corrida.FinalizarCorrida();
-            Pass.PagarCorrida(150);
+            //Paga a Corrida
+            Pass.PagarCorrida(50);
+            //Qualifica a corrida
             Console.Write("Qualifique o Motorista com estrelas de 0 a 5:");
             do
             {
